@@ -1,7 +1,5 @@
 package StepDefinition;
 
-import java.time.Duration;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -19,7 +17,7 @@ public class StepDefinition {
 		driver = new ChromeDriver();
 		driver.get("https://demo.guru99.com/V4/index.php");
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+	//	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 	}
 
 	@When("user enters username")
@@ -37,13 +35,23 @@ public class StepDefinition {
 	    driver.findElement(By.xpath("//input[@name='btnLogin']")).click();
 	}
 
-	@When("user credentials are wrong")
-	public void user_credentials_are_wrong() {
-	    System.out.println("For negative testing");
+	/*
+	 * @When("user credentials are wrong") public void user_credentials_are_wrong()
+	 * { System.out.println("For negative testing"); }
+	 * 
+	 * @Then("an error message should be displayed on webpage") public void
+	 * an_error_message_should_be_displayed_on_webpage() {
+	 * driver.switchTo().alert().accept(); }
+	 */
+	
+	@When("user enters username as {string}")
+	public void user_enters_username_as(String username) {
+		 driver.findElement(By.xpath("//input[@name='uid']")).sendKeys(username);
 	}
 
-	@Then("an error message should be displayed on webpage")
-	public void an_error_message_should_be_displayed_on_webpage() {
-	//	driver.switchTo().alert().accept();
-	}	
+	@When("user enters password as {string}")
+	public void user_enters_password_as(String password) {
+		 driver.findElement(By.xpath("//input[@name='password']")).sendKeys(password);
+	}
+
 }
