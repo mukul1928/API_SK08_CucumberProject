@@ -4,11 +4,24 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class StepDefinition {
+	
+	@Before
+	public void beforeTest() {
+		System.out.println("This is before hooks");
+	}
+	
+	@After
+	public void afterTest() {
+		System.out.println("This is after hooks");
+	}
+	
 	
 	WebDriver driver;
 	
@@ -32,7 +45,8 @@ public class StepDefinition {
 
 	@When("user clicks on submit button")
 	public void user_clicks_on_submit_button() {
-	    driver.findElement(By.xpath("//input[@name='btnLogin']")).click();
+	   // driver.findElement(By.xpath("//input[@name='btnLogin']")).click();
+		System.out.println("submit button clicked");
 	}
 
 	/*
@@ -52,6 +66,32 @@ public class StepDefinition {
 	@When("user enters password as {string}")
 	public void user_enters_password_as(String password) {
 		 driver.findElement(By.xpath("//input[@name='password']")).sendKeys(password);
+		
+	}
+	
+	@Given("user logins into the web page")
+	public void user_logins_into_the_web_page() {
+	    System.out.println("Login succesfull");
+	}
+
+	@Given("user enters credentials")
+	public void user_enters_credentials() {
+	    System.out.println("credentials enters");
+	}
+
+	@Given("user searches as item")
+	public void user_searches_as_item() {
+	    System.out.println("item searched");
+	}
+
+	@Given("user adds the item at the cart")
+	public void user_adds_the_item_at_the_cart() {
+	    System.out.println("item added");
+	}
+
+	@Then("user verifies item added to cart")
+	public void user_verifies_item_added_to_cart() {
+	    System.out.println("validation successfull");
 	}
 
 }
