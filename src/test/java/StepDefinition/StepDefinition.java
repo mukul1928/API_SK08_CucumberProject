@@ -1,5 +1,7 @@
 package StepDefinition;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -102,15 +104,38 @@ public class StepDefinition {
 	public void user_verifies_item_added_to_cart() {
 		System.out.println("validation successfull");
 	}
-	
+
 	@Given("user navigates to homepage of application")
 	public void user_navigates_to_homepage_of_application() {
-			System.out.println("Navigation to home page successfull");
-	  	}
+		System.out.println("Navigation to home page successfull");
+	}
 
 	@Then("user verifies the page title")
 	public void user_verifies_the_page_title() {
-	   System.out.println("page title verified");
+		System.out.println("page title verified");
+	}
+
+	@Given("user logins to the demo site of an application of guru99")
+	public void user_logins_to_the_demo_site_of_an_application_of_guru99() {
+		System.out.println("Login success");
+	}
+
+	@Given("user enters the below details")
+	public void user_enters_the_below_details(io.cucumber.datatable.DataTable userdata) {
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://demo.automationtesting.in/Register.html");
+		driver.manage().window().maximize();
+
+		List<List<String>> data = userdata.asLists(String.class);
+
+		driver.findElement(By.xpath("//input[@placeholder='First Name']")).sendKeys(data.get(1).get(0));
+		driver.findElement(By.xpath("//input[@placeholder='Last Name']")).sendKeys(data.get(1).get(1));
+		driver.findElement(By.className("form-control ng-pristine ng-valid ng-touched")).sendKeys(data.get(1).get(2));
+		driver.findElement(By.className("form-control ng-pristine ng-valid-email ng-invalid ng-invalid-required ng-touched"))
+				.sendKeys(data.get(1).get(3));
+		driver.findElement(By.className("form-control ng-pristine ng-invalid ng-invalid-required ng-valid-pattern ng-touched"))
+				.sendKeys(data.get(1).get(4));
+
 	}
 
 }
