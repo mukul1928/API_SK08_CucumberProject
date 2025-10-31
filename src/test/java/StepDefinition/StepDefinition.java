@@ -130,12 +130,15 @@ public class StepDefinition {
 
 		driver.findElement(By.xpath("//input[@placeholder='First Name']")).sendKeys(data.get(1).get(0));
 		driver.findElement(By.xpath("//input[@placeholder='Last Name']")).sendKeys(data.get(1).get(1));
-		driver.findElement(By.className("form-control ng-pristine ng-valid ng-touched")).sendKeys(data.get(1).get(2));
-		driver.findElement(By.className("form-control ng-pristine ng-valid-email ng-invalid ng-invalid-required ng-touched"))
-				.sendKeys(data.get(1).get(3));
-		driver.findElement(By.className("form-control ng-pristine ng-invalid ng-invalid-required ng-valid-pattern ng-touched"))
-				.sendKeys(data.get(1).get(4));
-
+		driver.findElement(By.id("Adresss"))
+				.sendKeys(data.get(1).get(2));
+		/*
+		 * //driver.findElement( // By.
+		 * className("form-control ng-pristine ng-valid-email ng-invalid ng-invalid-required ng-touched"
+		 * )) .sendKeys(data.get(1).get(3)); driver.findElement( By.
+		 * className("form-control ng-pristine ng-invalid ng-invalid-required ng-valid-pattern ng-touched"
+		 * )) .sendKeys(data.get(1).get(4));
+		 */
 	}
 
 }
