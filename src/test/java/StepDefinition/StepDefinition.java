@@ -4,7 +4,10 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.support.ui.Select;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -130,15 +133,21 @@ public class StepDefinition {
 
 		driver.findElement(By.xpath("//input[@placeholder='First Name']")).sendKeys(data.get(1).get(0));
 		driver.findElement(By.xpath("//input[@placeholder='Last Name']")).sendKeys(data.get(1).get(1));
-		driver.findElement(By.id("Adresss"))
-				.sendKeys(data.get(1).get(2));
-		/*
-		 * //driver.findElement( // By.
-		 * className("form-control ng-pristine ng-valid-email ng-invalid ng-invalid-required ng-touched"
-		 * )) .sendKeys(data.get(1).get(3)); driver.findElement( By.
-		 * className("form-control ng-pristine ng-invalid ng-invalid-required ng-valid-pattern ng-touched"
-		 * )) .sendKeys(data.get(1).get(4));
-		 */
+		driver.findElement(By.xpath("//textarea[@rows='3']")).sendKeys(data.get(1).get(2));
+		driver.findElement(By.xpath("//input[@type='email']")).sendKeys(data.get(1).get(3)); 
+		driver.findElement(By.xpath("//input[@type='tel']")).sendKeys(data.get(1).get(4));
+		driver.findElement(By.className("ui-autocomplete-multiselect ui-state-default ui-widget"))
+				.sendKeys(data.get(1).get(5));
+	}
+
+	@Then("user credentials are wrong")
+	public void user_credentials_are_wrong() {
+		System.out.println("User credentials are wrong");
+	}
+
+	@Then("an error message should be displayed on webpage")
+	public void an_error_message_should_be_displayed_on_webpage() {
+		System.out.println("Error Message displayed");
 	}
 
 }

@@ -1,3 +1,5 @@
+@smoke
+
 Feature: Login Scenario Test
 
   Scenario Outline: Validate FB Application with correct username and password
